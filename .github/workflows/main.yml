@@ -32,4 +32,4 @@ jobs:
           url: 'jdbc:mysql://127.0.0.1:3306/mydatabase'
           username: 'root'
           password: ${{ secrets.DB_PASSWORD }}
-
+          driver: 'com.mysql.cj.jdbc.Driver'
