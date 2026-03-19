@@ -23,11 +23,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download MySQL Driver
+        run: wget https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar -O mysql-connector-j.jar
+
       - name: Run Liquibase Migration
         uses: liquibase/liquibase-github-action@v4
         with:
           operation: 'update'
-          classpath: 'liquibase/'
+          classpath: 'mysql-connector-j.jar'
           changeLogFile: 'liquibase/changelog/changelog-master.xml'
           url: 'jdbc:mysql://127.0.0.1:3306/mydatabase'
           username: 'root'
