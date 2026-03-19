@@ -1,0 +1,35 @@
+name: Liquibase MySQL CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  migrate-database:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_DATABASE: mydatabase
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Liquibase Migration
+        uses: liquibase/liquibase-github-action@v4
+        with:
+          operation: 'update'
+          classpath: 'liquibase/'
+          changeLogFile: 'liquibase/changelog/changelog-master.xml'
+          url: 'jdbc:mysql://127.0.0.1:3306/mydatabase'
+          username: 'root'
+          password: ${{ secrets.DB_PASSWORD }}
+
