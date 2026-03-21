@@ -5,9 +5,12 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <!-- Incluir aquí los archivos de cambios individuales -->
-    <include file="changes/001-create-hello-world-table.xml" relativeToChangelogFile="true"/>
-    <include file="changes/002-add-new-column.xml" relativeToChangelogFile="true"/>
-    <include file="changes/003-insert-second-message.xml" relativeToChangelogFile="true"/>
+    <changeSet id="3" author="agalvez">
+        <comment>Insertar un segundo mensaje para probar los filtros de GitHub Actions.</comment>
+        
+        <insert tableName="hello_world">
+            <column name="message" value="¡Prueba de filtros de GitHub Actions superada!"/>
+        </insert>
+    </changeSet>
 
 </databaseChangeLog>
