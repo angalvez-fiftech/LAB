@@ -3,9 +3,7 @@ name: Hola Mundo Pipeline
 on:
   push:
     branches: [ main, master ]
-    paths-ignore:
-      - 'liquibase/**'
-      - '.github/workflows/main.yml'
+    
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:  # Permite ejecutarlo manualmente

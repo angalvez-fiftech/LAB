@@ -7,6 +7,15 @@ on:
     paths:
       - 'liquibase/**'
       - '.github/workflows/main.yml'
+    paths:
+      - 'liquibase/**'
+      - '.github/workflows/main.yml'
+    paths:
+      - 'liquibase/**'
+      - '.github/workflows/main.yml'
+    paths:
+      - 'liquibase/**'
+      - '.github/workflows/main.yml'
 
 jobs:
   migrate-database:
